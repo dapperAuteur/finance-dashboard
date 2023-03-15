@@ -69,7 +69,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-            $100 <span>-&gt;</span>
+            $10000 <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
             AZFCU.

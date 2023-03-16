@@ -2,11 +2,23 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/Home.module.css';
+import utilStyles from './../styles/utils.module.css';
 
-const inter = Inter({ subsets: ['latin'] })
+import { getSortedTranxData } from '@/lib/transactions';
 
-export default function Home() {
+const inter = Inter({ subsets: ['latin'] });
+
+export async function getStaticProps() {
+  const allTranxData = getSortedTranxData();
+  return {
+    props: {
+      allTranxData,
+    },
+  };
+}
+
+export default function Home({ allTranxData }) {
   return (
     <>
       <Head>
@@ -17,12 +29,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
           <Link href="/transactions/expenses">Debits</Link>
           <h2>
             <Link href="/transactions/income">Credits</Link>
           </h2>
-          </p>
           <div>
             <a
               href="/dashboard"
@@ -115,6 +125,22 @@ export default function Home() {
             </p>
           </Link>
         </div>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>Accounts</h2>
+          <ul className={utilStyles.list}>
+            {allTranxData.map(({id, date, balance, title}) => (
+              <li className={utilStyles.listItem} key={id}>
+                {title}
+                <br/>
+                {id}
+                <br/>
+                {date}
+                <br/>
+                {balance}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
     </>
   )

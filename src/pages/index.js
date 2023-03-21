@@ -42,7 +42,7 @@ export default function Home({ allTranxData }) {
               Sign In{' '}
               <Image
                 src="/images/sign_in.png"
-                alt="Vercel Logo"
+                alt="Sign In Image"
                 className={styles.vercelLogo}
                 width={100}
                 height={24}
@@ -56,15 +56,15 @@ export default function Home({ allTranxData }) {
           <Image
             className={styles.logo}
             src="/images/BAM_dashboard.png"
-            alt="Next.js Logo"
+            alt="BAM Financial Dashboard Image"
             width={180}
             height={37}
             priority
           />
-          <div className={styles.thirteen}>
+          <div className={utilStyles.borderCircle}>
             <Image
-              src="/thirteen.svg"
-              alt="13"
+              src="/images/profile.png"
+              alt="BAM Profile Image"
               width={40}
               height={31}
               priority
@@ -74,7 +74,7 @@ export default function Home({ allTranxData }) {
 
         <div className={styles.grid}>
           <Link
-            href="/transactions/account"
+            href="/transactions/azfcu"
             className={styles.card}
             rel="noopener noreferrer"
           >
@@ -87,7 +87,7 @@ export default function Home({ allTranxData }) {
           </Link>
 
           <Link
-            href="/transactions/account"
+            href="/transactions/greenwood"
             className={styles.card}
             rel="noopener noreferrer"
           >
@@ -100,7 +100,7 @@ export default function Home({ allTranxData }) {
           </Link>
 
           <Link
-            href="/transactions/account"
+            href="/transactions/onb"
             className={styles.card}
             rel="noopener noreferrer"
           >
@@ -113,7 +113,7 @@ export default function Home({ allTranxData }) {
           </Link>
 
           <Link
-            href="/transactions/account"
+            href="/transactions/tcu"
             className={styles.card}
             rel="noopener noreferrer"
           >

@@ -1,7 +1,7 @@
 ---
 title: 'Greenwood Financial'
 date: '2023-04-01'
-balance: '$100,000.00'
+balance: '$613,651.37'
 ---
 
 This account is rarely used. It's mainly used as a savings account. BAM has two accounts here: **checking** and **savings**.

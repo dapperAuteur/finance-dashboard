@@ -1,7 +1,7 @@
 ---
 title: 'Teachers Credit Union'
 date: '2023-04-01'
-balance: '$10,000,000.00'
+balance: '$3,403,777.05'
 ---
 
 This account is rarely used and the oldest continuous account held by BAM. It's mainly used as a savings account. BAM has two accounts here: **checking** and **savings**.

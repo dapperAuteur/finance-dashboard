@@ -79,7 +79,8 @@ export default function Home({ allTranxData }) {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-            $10000 <span>-&gt;</span>
+            $71,196.44
+            <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
             AZFCU.
@@ -92,7 +93,7 @@ export default function Home({ allTranxData }) {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-            $100,000 <span>-&gt;</span>
+            $613,651.37 <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
             GREENWOOD BANK.
@@ -105,7 +106,7 @@ export default function Home({ allTranxData }) {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-            $10,000 <span>-&gt;</span>
+            $52,802.95 <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
             ONE UNITED BANK.
@@ -118,7 +119,7 @@ export default function Home({ allTranxData }) {
             rel="noopener noreferrer"
           >
             <h2 className={inter.className}>
-            $10,000,000 <span>-&gt;</span>
+            $3,403,777.05 <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
             TEACHER'S CREDIT UNION.

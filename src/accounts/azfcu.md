@@ -1,7 +1,7 @@
 ---
 title: 'Arizona Financial Credit Union'
 date: '2023-04-01'
-balance: '$10,000.00'
+balance: '$71,196.44'
 ---
 
 This account is used most often. It's used for daily purchases of fuel for BAM and his vehicles. BAM has two types of accounts with this institution **Personal** and **Business**. The difference is with the **owner of the account** and to **whom's benefit** it is used.

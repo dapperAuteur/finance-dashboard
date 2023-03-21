@@ -1,7 +1,7 @@
 ---
 title: 'One United Bank'
 date: '2023-04-01'
-balance: '$10,000.00'
+balance: '$52,802.95'
 ---
 
 This account is rarely used. It's mainly used as a savings account. BAM has two accounts here: **checking** and **savings**.

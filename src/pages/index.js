@@ -1,9 +1,12 @@
 import Head from 'next/head'
+import Layout, {siteTitle} from './../components/layout';
 import Image from 'next/image'
 import Link from 'next/link';
+import Date from '../components/date';
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css';
 import utilStyles from './../styles/utils.module.css';
+import handler from './api/hello';
 
 import { getSortedTranxData } from '@/lib/transactions';
 
@@ -20,9 +23,9 @@ export async function getStaticProps() {
 
 export default function Home({ allTranxData }) {
   return (
-    <>
+    <Layout home>
       <Head>
-        <title>BAM Financial Dashboard</title>
+        <title>{siteTitle}</title>
         <meta name="description" content="Dashboard of BAM Money" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -131,11 +134,13 @@ export default function Home({ allTranxData }) {
           <ul className={utilStyles.list}>
             {allTranxData.map(({id, date, balance, title}) => (
               <li className={utilStyles.listItem} key={id}>
-                {title}
+                <Link href={`/transactions/${id}`}>
+                  {title}
+                </Link>
                 <br/>
-                {id}
-                <br/>
-                {date}
+                <small className={utilStyles.lightText}>
+                <Date dateString={date}/>
+                </small>
                 <br/>
                 {balance}
               </li>
@@ -143,6 +148,6 @@ export default function Home({ allTranxData }) {
           </ul>
         </section>
       </main>
-    </>
+    </Layout>
   )
 }

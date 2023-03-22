@@ -11,3 +11,17 @@ export async function getAllTranxIds(){
     };
   });
 }
+
+export async function getUsers(){
+  const url = 'https://us-west-2.aws.data.mongodb-api.com/app/data-vzrnb/endpoint/data/v1';
+  const res = await fetch(url);
+  const users = await res.json();
+  console.log('users :>> ', users);
+  return users.map((user) => {
+    return {
+      params: {
+        id: user.id,
+      },
+    };
+  });
+}

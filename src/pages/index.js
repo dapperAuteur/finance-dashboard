@@ -6,7 +6,6 @@ import Date from '../components/date';
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css';
 import utilStyles from './../styles/utils.module.css';
-import handler from './api/hello';
 
 import { getSortedTranxData } from '@/lib/transactions';
 
@@ -151,3 +150,4 @@ export default function Home({ allTranxData }) {
     </Layout>
   )
 }
+

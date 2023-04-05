@@ -40,6 +40,13 @@ export const AffixQueries = {
                     .collection(dbCollection)
                     .countDocuments();
             }
+            if (affixes.length < limit) {
+                console.log('affixes.length :>> ', affixes.length);
+                cursor = "end";
+            } else {
+                cursor = affixes.pop();
+                cursor = cursor._id;
+            }
             val = {
                 affixes, count, cursor
             }

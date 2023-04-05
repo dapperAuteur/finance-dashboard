@@ -31,10 +31,14 @@ export const AffixQueries = {
                     .toArray();
             } else {
                 affixes = await db
-                .collection("affixes")
-                .find({})
-                .limit(limit)
-                .toArray();
+                    .collection(dbCollection)
+                    .find({})
+                    .limit(limit)
+                    .toArray();
+                
+                count = await db
+                    .collection(dbCollection)
+                    .countDocuments();
             }
             val = {
                 affixes, count, cursor

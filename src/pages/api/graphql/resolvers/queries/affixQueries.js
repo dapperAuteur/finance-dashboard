@@ -7,7 +7,7 @@ const dbName = "palabras-express-api";
 export const AffixQueries = {
     findAffixes: async (_, args, context) => {
         let {cursor, example, filter, limit, meaning, morpheme} = {...args};
-        let val = {}
+        let val = {};
         let affixes, count;
         try {
             const client = await clientPromise;
@@ -106,7 +106,7 @@ export const AffixQueries = {
             }
             val = {
                 affixes, count, cursor
-            }
+            };
             return val;
         } catch(e) {
             console.error(e);

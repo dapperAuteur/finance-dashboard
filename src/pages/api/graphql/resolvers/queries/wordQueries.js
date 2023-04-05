@@ -7,7 +7,7 @@ const dbName = "palabras-express-api";
 export const WordQueries = {
     findWords: async (_, args, context) => {
         let {cursor, definition, filter, limit, meaning, word} = {...args};
-        let val = {}
+        let val = {};
         let words, count;
         try {
             const client = await clientPromise;

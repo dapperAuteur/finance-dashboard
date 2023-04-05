@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import Layout, {siteTitle} from './../components/layout';
+import Layout, {siteTitle} from '../components/layout';
 import Image from 'next/image'
 import Link from 'next/link';
 import Date from '../components/date';
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css';
+import styles from "./../styles/Home.module.css";
 import utilStyles from './../styles/utils.module.css';
 import handler from './api/hello';
 
-import { getSortedTranxData } from '@/lib/transactions';
+import { getSortedTranxData } from './../lib/transactions';
 
 const inter = Inter({ subsets: ['latin'] });
 

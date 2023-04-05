@@ -1070,6 +1070,8 @@ export const typeDefs = /* GraphQL */ `
     ): Word
     findWords(
       filter: String
+      definition: String
+      meaning: String
       cursor: String
       limit: Int = 20
     ): ReturnWords
@@ -1082,6 +1084,9 @@ export const typeDefs = /* GraphQL */ `
     ): Affix
     findAffixes(
       filter: String
+      example: String
+      meaning: String
+      morpheme: String
       cursor: String
       limit: Int = 20
       ): ReturnAffixes
@@ -1093,8 +1098,16 @@ export const typeDefs = /* GraphQL */ `
       _id: String
     ): Verbo
     findVerbos(
-      filter: String,
-      cursor: String,
+      filter: String
+      english: String
+      irregular: Boolean = false
+      reflexive: Boolean = false
+      categoria_de_irregular: String
+      cambiar_de_irregular: String
+      terminacion: String
+      grupo: Int = 0
+      spanish: String
+      cursor: String
       limit: Int = 20
     ): ReturnVerbos
     findRandomVerbos(

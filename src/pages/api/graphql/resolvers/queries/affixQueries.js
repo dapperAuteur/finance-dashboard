@@ -6,7 +6,7 @@ const dbName = "palabras-express-api";
 
 export const AffixQueries = {
     findAffixes: async (_, args, context) => {
-        let {cursor, filter, limit} = {...args};
+        let {cursor, example, filter, limit, meaning, morpheme} = {...args};
         let val = {}
         let affixes, count;
         try {
@@ -41,6 +41,51 @@ export const AffixQueries = {
                         //         }
                         //     ]
                         // })
+                        .countDocuments();
+            } else if(example){
+                affixes = await db
+                    .collection(dbCollection)
+                    .find({
+                        $or: [
+                            {
+                                example: {$regex: `${example}`, $options: "i"}
+                            }
+                        ]
+                    })
+                    .limit(limit + 1)
+                    .toArray();
+                    count = await db
+                        .collection(dbCollection)
+                        .countDocuments();
+            } else if(meaning){
+                affixes = await db
+                    .collection(dbCollection)
+                    .find({
+                        $or: [
+                            {
+                                meaning: {$regex: `${meaning}`, $options: "i"}
+                            }
+                        ]
+                    })
+                    .limit(limit + 1)
+                    .toArray();
+                    count = await db
+                        .collection(dbCollection)
+                        .countDocuments();
+            } else if(morpheme){
+                affixes = await db
+                    .collection(dbCollection)
+                    .find({
+                        $or: [
+                            {
+                                morpheme: {$regex: `${morpheme}`, $options: "i"}
+                            }
+                        ]
+                    })
+                    .limit(limit + 1)
+                    .toArray();
+                    count = await db
+                        .collection(dbCollection)
                         .countDocuments();
             } else {
                 affixes = await db

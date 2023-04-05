@@ -1082,6 +1082,9 @@ export const typeDefs = /* GraphQL */ `
     ): Affix
     findAffixes(
       filter: String
+      example: String
+      meaning: String
+      morpheme: String
       cursor: String
       limit: Int = 20
       ): ReturnAffixes

@@ -1070,6 +1070,8 @@ export const typeDefs = /* GraphQL */ `
     ): Word
     findWords(
       filter: String
+      definition: String
+      meaning: String
       cursor: String
       limit: Int = 20
     ): ReturnWords

@@ -1,5 +1,5 @@
 import { createYoga, createSchema } from 'graphql-yoga';
-import { typeDefs } from './schema/schema'
+import { typeDefs } from './schema/indexSchema';
 import { resolvers } from './resolvers';
 
 const schema = createSchema({

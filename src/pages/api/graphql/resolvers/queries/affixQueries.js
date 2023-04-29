@@ -91,7 +91,7 @@ export const AffixQueries = {
                 affixes = await db
                     .collection(dbCollection)
                     .find({})
-                    .limit(limit)
+                    .limit(limit + 1)
                     .toArray();
                 
                 count = await db
@@ -148,6 +148,7 @@ export const AffixQueries = {
                             }
                         ]
                     })
+                    .limit(limit + 1)
                     .toArray();
                 count = await db
                     .collection(dbCollection)

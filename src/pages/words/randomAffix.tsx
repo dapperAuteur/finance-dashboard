@@ -13,10 +13,12 @@ const fetcher = (query: string) =>
 
 type Data = {
   findRandomAffixes: {
+    affixes: {
     _id: string
     morpheme: string
     example: [string]
     meaning: [string]
+    }
   }[]
 }
 

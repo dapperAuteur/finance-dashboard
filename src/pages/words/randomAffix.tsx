@@ -26,7 +26,7 @@ type findRandomAffixes = {
     morpheme: string
     example: [string]
     meaning: [string]
-    }
+    }[]
 }
 
 const queryRandomAffix = `

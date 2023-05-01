@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-const fetcher = (query: string) =>
+const fetcher = (query) =>
   fetch('/api/graphql', {
     method: 'POST',
     headers: {
@@ -9,25 +9,7 @@ const fetcher = (query: string) =>
     body: JSON.stringify({ query }),
   })
     .then((res) => res.json())
-    .then((json) => json.data)
-
-type Data = {
-  findRandomAffixes: {
-    _id: string
-    morpheme: string
-    example: [string]
-    meaning: [string]
-  }[]
-}
-
-type findRandomAffixes = {
-  affixes: {
-    _id: string
-    morpheme: string
-    example: [string]
-    meaning: [string]
-    }[]
-}
+    .then((json) => json.data);
 
 const queryRandomAffix = `
   findRandomAffixes(
@@ -40,7 +22,7 @@ const queryRandomAffix = `
       meaning
     }
   }
-`
+`;
 
 export default function RandomAffix() {
   /*
@@ -49,7 +31,7 @@ export default function RandomAffix() {
   const { data, error, isLoading } = useSWR<Data>('{ findRandomAffixes morpheme } }', fetcher)
   */
 
-  const { data, error, isLoading } = useSWR<Data>('{ findRandomAffixes (limit: 2) {affixes { _id, morpheme, example, meaning } } }', fetcher)
+  const { data, error, isLoading } = useSWR('{ findRandomAffixes (limit: 2) {affixes { _id, morpheme, example, meaning } } }', fetcher)
 
   if (error) {
     console.log('error :>> ', error);

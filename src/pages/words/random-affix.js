@@ -9,7 +9,7 @@ const fetcher = (query) =>
     body: JSON.stringify({ query }),
   })
     .then((res) => res.json())
-    .then((json) => json.data);
+    .then((json) => json.data)
 
 const queryRandomAffix = `
   findRandomAffixes(

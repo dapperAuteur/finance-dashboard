@@ -35,6 +35,7 @@ export default function Layout({children, home}) {
               alt=""
               />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <Link href="/words/random-affix">Random Affix</Link>
           </>
         ) : (
           <>

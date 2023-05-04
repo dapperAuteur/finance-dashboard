@@ -67,11 +67,18 @@ export default function RandomAffix() {
           <ul>
             <li key={affix._id}>Affix: {affix.morpheme}:
             {/* need to map over examples and meanings */}
-              <ul>
-                <li>Examples: {affix.example}</li>
-                <li>Meaning: {affix.meaning}</li>
-              </ul>
-              
+              <p>Meaning:</p>
+              {affix.meaning.map((mean, index) => (
+                <ul>
+                  <li key={index}>{mean}</li>
+                </ul>
+              ))}
+              <p>Examples:</p>
+              {affix.example.map((ex, index) => (
+                <ul>
+                  <li key={index}>{ex}</li>
+                </ul>
+              ))}
             </li>
           </ul>
         ))}

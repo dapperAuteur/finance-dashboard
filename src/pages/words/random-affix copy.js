@@ -37,59 +37,51 @@ export default function RandomAffix() {
   const { data, error, isLoading } = useSWR('{ findRandomAffixes (limit: 2) {affixes { _id, morpheme, example, meaning } } }', fetcher)
 
   if (error) {
-    // console.log('error :>> ', error);
+    console.log('error :>> ', error);
     return <div>Failed to load</div>
   }
   if (isLoading) {
-    // console.log('isLoading :>> ', isLoading);
+    console.log('isLoading :>> ', isLoading);
     return <div>Loading...</div>
   }
-  // console.log('data :>> ', data);
+  console.log('data :>> ', data);
   if (!data) {
     console.log("there's !data");
     
     return null;
   }
-  // console.log('data :>> ', data);
+  console.log('data :>> ', data);
 
   const { findRandomAffixes } = data;
-  // console.log('findRandomAffixes :>> ', findRandomAffixes);
+  console.log('findRandomAffixes :>> ', findRandomAffixes);
   const { affixes } = findRandomAffixes;
-  // console.log('affixes :>> ', affixes);
-  let affix = affixes[0];
-  // console.log('affix :>> ', affix);
-  let {morpheme, example, meaning} = affix;
-  // console.log('morpheme :>> ', morpheme);
-  // console.log('example :>> ', example);
-  // console.log('meaning :>> ', meaning);
-  let examples = {};
-  for (let i = 0; i < example.length; i++) {
-    examples[example[i]] = example[i];
-    examples[i] = crypto.randomUUID();
-  }
-  console.log('examples :>> ', examples);
+  console.log('affixes :>> ', affixes);
 
   return (
     <Layout>
       <Head>
-        <title>Random Affix</title>
+        <title>2 Random Affixes</title>
       </Head>
       <article>
-        
-            <h2>Affix (morpheme): {morpheme}:</h2>
+        {affixes.map((affix) => (
+          <ul>
+            <li key={affix._id}>Affix: {affix.morpheme}:
             {/* need to map over examples and meanings */}
               <p>Meaning:</p>
-              {meaning.map((mean) => (
+              {affix.meaning.map((mean, i) => (
                 <ul>
-                  <li key={mean}>{mean}</li>
+                  <li key={i}>{mean}</li>
                 </ul>
               ))}
               <p>Examples:</p>
-              {example.map((ex) => (
+              {affix.example.map((ex, j) => (
                 <ul>
-                  <li key={ex}>{ex}</li>
+                  <li key={j}>{ex}</li>
                 </ul>
               ))}
+            </li>
+          </ul>
+        ))}
       </article>
     </Layout>
     

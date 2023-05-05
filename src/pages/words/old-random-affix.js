@@ -1,7 +1,4 @@
 import useSWR from 'swr';
-import Layout from '../../components/layout';
-import Head from 'next/head';
-import utilStyles from './../../styles/utils.module.css';
 
 const fetcher = (query) =>
   fetch('/api/graphql', {
@@ -58,11 +55,7 @@ export default function RandomAffix() {
   console.log('affixes :>> ', affixes);
 
   return (
-    <Layout>
-      <Head>
-        <title>2 Random Affixes</title>
-      </Head>
-      <article>
+    <div>
       {affixes.map((affix) => (
         <div key={affix._id}>{affix.morpheme}:
         {/* need to map over examples and meanings */}
@@ -70,8 +63,7 @@ export default function RandomAffix() {
           <p>Meaning: {affix.meaning}</p>
         </div>
       ))}
-      </article>
-    </Layout>
+    </div>
   )
 }
 

@@ -62,12 +62,20 @@ export default function RandomAffix() {
   // console.log('morpheme :>> ', morpheme);
   // console.log('example :>> ', example);
   // console.log('meaning :>> ', meaning);
-  let examples = {};
-  for (let i = 0; i < example.length; i++) {
-    examples[example[i]] = example[i];
-    examples[i] = crypto.randomUUID();
+  /*
+  let examples = {
+    example: a,
+    uuid: asdf
   }
-  console.log('examples :>> ', examples);
+  */
+  // let examples = {};
+  // for (let i = 0; i < example.length; i++) {
+    // let example[i] = {};
+    // console.log('example[i] :>> ', example[i]);
+    // examples[example[i]] = example[i];
+    // examples["uuid"] = crypto.randomUUID();
+  // }
+  // console.log('examples :>> ', examples);
 
   return (
     <Layout>

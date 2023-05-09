@@ -1,5 +1,6 @@
 export const typeDefs = /* GraphQL */ `
 
+  # enum
   enum AllowedAffixes {
     CIRCUMFIX
     DISFIX

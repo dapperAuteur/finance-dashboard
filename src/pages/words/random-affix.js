@@ -11,6 +11,7 @@ const queryRandomAffix = `
   ){
     affixes{
       _id
+      affix_type
       morpheme
       example
       meaning
@@ -25,7 +26,7 @@ export default function RandomAffix() {
   const { data, error, isLoading } = useSWR<Data>('{ findRandomAffixes morpheme } }', fetcher)
   */
 
-  const { data, error, isLoading } = useSWR('{ findRandomAffixes (limit: 2) {affixes { _id, morpheme, example, meaning } } }', fetcher)
+  const { data, error, isLoading } = useSWR('{ findRandomAffixes (limit: 2) {affixes { _id, affix_type, morpheme, example, meaning } } }', fetcher)
 
   if (error) {
     // console.log('error :>> ', error);
@@ -40,7 +41,7 @@ export default function RandomAffix() {
     // console.log("there's !data");
     return null;
   }
-  // console.log('data :>> ', data);
+  console.log('data :>> ', data);
 
   const { findRandomAffixes } = data;
   // console.log('findRandomAffixes :>> ', findRandomAffixes);
@@ -48,15 +49,17 @@ export default function RandomAffix() {
   // console.log('affixes :>> ', affixes);
 
   const [affix0, affix1] = [...affixes];
+  const affix_type0 = affix0.affix_type;
+  const affix_type1 = affix1.affix_type;
   const meaning0 = affix0.meaning;
   const example0 = affix0.example;
   const meaning1 = affix1.meaning;
   const example1 = affix1.example;
 
-  let example0String, meaning0String, example1String, meaning1String = "";
+  let affix_type0String, affix_type1String,example0String, meaning0String, example1String, meaning1String = "";
   
   /*
-  * Array2String()
+  * Array2String(arr, str)
   * loop thru array to get 2 affixes
   * set to affix0 and affix1
   * get meaning and example from each affix object
@@ -67,6 +70,8 @@ export default function RandomAffix() {
   * first attempt used a for loop and not arr.join()
   */
 
+  const affix0Type = Array2String(affix_type0, affix_type0String);
+  const affix1Type = Array2String(affix_type1, affix_type1String);
   const affix0Meaning = Array2String(meaning0, meaning0String);
   const affix0Example = Array2String(example0, example0String);
   const affix1Meaning = Array2String(meaning1, meaning1String);
@@ -78,7 +83,7 @@ export default function RandomAffix() {
         <title>2 Random Affixes</title>
       </Head>
       <article>
-        <div>Morphemes: {affix0.morpheme}
+        <div>Morphemes: {affix0.morpheme} | Types: {affix0Type}
         {/* need to map over examples and meanings */}
           <p>Examples: {affix0Example}</p>
           <p>Meanings: {affix0Meaning}</p>
@@ -86,7 +91,7 @@ export default function RandomAffix() {
         <br/>
         <hr/>
         <br/>
-        <div>Morphemes: {affix1.morpheme}
+        <div>Morphemes: {affix1.morpheme} | Types: {affix1Type}
         {/* need to map over examples and meanings */}
           <p>Examples: {affix1Example}</p>
           <p>Meanings: {affix1Meaning}</p>

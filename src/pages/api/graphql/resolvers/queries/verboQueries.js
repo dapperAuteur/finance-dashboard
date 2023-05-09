@@ -6,6 +6,7 @@ const dbName = "palabras-express-api";
 
 export const VerboQueries = {
     findVerbos: async (_, args, context) => {
+        console.log('args :>> ', args);
         let {cursor, english, filter, limit, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo, spanish} = {...args};
         let val = {};
         let verbos, count;

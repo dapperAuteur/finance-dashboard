@@ -50,12 +50,48 @@ export default function RandomAffix() {
     
     return null;
   }
-  console.log('data :>> ', data);
+  // console.log('data :>> ', data);
 
   const { findRandomAffixes } = data;
-  console.log('findRandomAffixes :>> ', findRandomAffixes);
+  // console.log('findRandomAffixes :>> ', findRandomAffixes);
   const { affixes } = findRandomAffixes;
-  console.log('affixes :>> ', affixes);
+  // console.log('affixes :>> ', affixes);
+
+  /*
+  * Array2String()
+  * loop thru array to get 2 affixes
+  * set to affix0 and affix1
+  * get meaning and example from each affix object
+  * set to meaning0, example0, meaning1, example1
+  * turn meaning and example from an array of strings
+  * into a string with comma separation
+  * 
+  * first attempt used a for loop and not arr.join()
+  */
+
+  const [affix0, affix1] = [...affixes];
+  const meaning0 = affix0.meaning;
+  const example0 = affix0.example;
+  const meaning1 = affix1.meaning;
+  const example1 = affix1.example;
+
+  let example0String, meaning0String, example1String, meaning1String = "";
+  const Array2String = (arr, str) => {
+      if (arr.length === 0) {
+        str = "NO EXAMPLES/MEANINGS";
+      } else if (arr.length === 1) {
+        str = arr[0];
+        return arr;
+      } else {
+        str = arr.join(", ");
+        console.log('str :>> ', str);
+      }
+    return str
+  }
+  const affix0Meaning = Array2String(meaning0, meaning0String);
+  const affix0Example = Array2String(example0, example0String);
+  const affix1Meaning = Array2String(meaning1, meaning1String);
+  const affix1Example = Array2String(example1, example1String);
 
   return (
     <Layout>
@@ -63,13 +99,19 @@ export default function RandomAffix() {
         <title>2 Random Affixes</title>
       </Head>
       <article>
-      {affixes.map((affix) => (
-        <div key={affix._id}>{affix.morpheme}:
+        <div>Morphemes: {affix0.morpheme}:
         {/* need to map over examples and meanings */}
-          <p>Examples: {affix.example}</p>
-          <p>Meaning: {affix.meaning}</p>
+          <p>Examples: {affix0Example}</p>
+          <p>Meanings: {affix0Meaning}</p>
         </div>
-      ))}
+        <br/>
+        <hr/>
+        <br/>
+        <div>Morphemes: {affix1.morpheme}:
+        {/* need to map over examples and meanings */}
+          <p>Examples: {affix1Example}</p>
+          <p>Meanings: {affix1Meaning}</p>
+        </div>
       </article>
     </Layout>
   )

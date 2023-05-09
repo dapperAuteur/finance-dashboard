@@ -1,5 +1,6 @@
 export const typeDefs = /* GraphQL */ `
 
+  # enum
   enum AllowedAffixes {
     CIRCUMFIX
     DISFIX
@@ -41,6 +42,14 @@ export const typeDefs = /* GraphQL */ `
     TEXT
     VIDEO
     WEBSITE
+    NA
+  }
+
+  enum AllowedTerminacion {
+    AR
+    ER
+    IR
+    OR
     NA
   }
 
@@ -222,6 +231,31 @@ export const typeDefs = /* GraphQL */ `
     note: [String]
     tag: [String]
     tranx: [String]
+  }
+
+  input InputVerbo {
+    token: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion
+    grupo: Float
+  }
+
+  input InputMutateVerbo {
+    _id: String
+    token: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion
+    grupo: Float
   }
 
   input InputTool {
@@ -675,7 +709,19 @@ export const typeDefs = /* GraphQL */ `
     tranx: [Transaction]
   }
 
-  
+  type Verbo {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String # may be changed to or moved from categoría_de_irregular
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion # may be changed to or moved from terminación
+    grupo: Float
+  }
 
   type Word {
     _id: String

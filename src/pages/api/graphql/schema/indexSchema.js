@@ -17,7 +17,69 @@ export const typeDefs = /* GraphQL */ `
     NA
   }
 
+  enum AllowedTongue {
+    ENGLISH
+    SPANISH
+    NA
+  }
+
+  enum AllowedCurrency {
+    BITCOIN
+    BOOTY
+    CRC
+    ETHEREUM
+    GTQ
+    PESOMXN
+    SPANK
+    USD
+    NA
+  }
+
+  enum MediaType {
+    AUDIO
+    IMAGE
+    TEXT
+    VIDEO
+    WEBSITE
+    NA
+  }
+
+  enum AllowedTerminacion {
+    AR
+    ER
+    IR
+    OR
+    NA
+  }
+
   # input
+
+  input InputActivity {
+    _id: String
+    endTime: String # DateTime
+    startTime: String # DateTime
+    description: String
+    media: [String]
+    name: String
+    note: [String]
+    person: [String]
+    tag: [String]
+  }
+
+  input InputBlogPost {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    author: [String]
+    body: String
+    comment: [String]
+    media: [String]
+    note: [String]
+    publish_date: String # DateTime
+    published: Boolean
+    tag: [String]
+    title: String
+  }
 
   input InputBudget {
     _id: String
@@ -113,8 +175,10 @@ export const typeDefs = /* GraphQL */ `
     # tool: [Tool] # @hasInverse(field: media)
     # user: [User] # @hasInverse(field: media)
     # vendor: [Vendor] # @hasInverse(field: media)
+    # verbo: [Verbo] # @hasInverse(field: media)
     # word: [Word] # @hasInverse(field: media)
     # tag: [Tag] # @hasInverse(field: media)
+    # tranx: [Transaction] # @hasInverse(field: media)
   }
 
   input InputPerson {
@@ -168,6 +232,31 @@ export const typeDefs = /* GraphQL */ `
     tranx: [String]
   }
 
+  input InputVerbo {
+    token: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion
+    grupo: Float
+  }
+
+  input InputMutateVerbo {
+    _id: String
+    token: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion
+    grupo: Float
+  }
+
   input InputTool {
     token: String
     _id: String
@@ -188,6 +277,26 @@ export const typeDefs = /* GraphQL */ `
     media: [String]
     note: [String]
     tag: [String]
+  }
+
+  input InputTransaction {
+    token: String
+    _id: String
+    budget: String
+    currency: [String]
+    fin_acc: [String]
+    occurrence_string: String
+    tranx_event: String
+    tranx_credit: Int
+    tranx_debit: Int
+    description: String
+    vendor: [String]
+    participant: [String]
+    account: [String]
+    media: [String] # @hasInverse(field: note)
+    note: [String] # @search(by: [term])
+    tag: [String] # @hasInverse(field: note)
+    # currency: [String]
   }
 
   input InputWord {
@@ -335,6 +444,7 @@ export const typeDefs = /* GraphQL */ `
     media: [Media]
     note: [Note]
     partner: [Person]
+    tranx: [Transaction]
   }
 
   type Comment {
@@ -374,6 +484,7 @@ export const typeDefs = /* GraphQL */ `
     note: [Note] # @hasInverse(field: fin_acct)
     owner: [Person] # @hasInverse(field: fin_acct)
     tag: [Tag] # @hasInverse(field: fin_acct)
+    tranx: [Transaction] # @hasInverse(field: fin_acct)
   }
 
   type Game {
@@ -424,8 +535,10 @@ export const typeDefs = /* GraphQL */ `
     tool: [Tool] # @hasInverse(field: media)
     user: [User] # @hasInverse(field: media)
     vendor: [Vendor] # @hasInverse(field: media)
+    verbo: [Verbo] # @hasInverse(field: media)
     word: [Word] # @hasInverse(field: media)
     tag: [Tag] # @hasInverse(field: media)
+    tranx: [Transaction] # @hasInverse(field: media)
   }
 
   type Note {
@@ -447,8 +560,10 @@ export const typeDefs = /* GraphQL */ `
     tool: [Tool] # @hasInverse(field: note)
     user: [User] # @hasInverse(field: note)
     vendor: [Vendor] # @hasInverse(field: note)
+    verbo: [Verbo] # @hasInverse(field: note)
     word: [Word] # @hasInverse(field: note)
     tag: [Tag] # @hasInverse(field: note)
+    tranx: [Transaction] # @hasInverse(field: note)
   }
 
   type Person {
@@ -470,6 +585,7 @@ export const typeDefs = /* GraphQL */ `
     note: [Note] # @hasInverse(field: person)
     profile_image_url: [Media]
     tag: [Tag] # @hasInverse(field: person)
+    tranx: [Transaction] # @hasInverse(field: participant)
   }
 
   type Podcast {
@@ -507,8 +623,9 @@ export const typeDefs = /* GraphQL */ `
     podcast: [Podcast] # @hasInverse(field: tag)
     tool: [Tool] # @hasInverse(field: tag)
     user: [User] # @hasInverse(field: tag)
-    vendor: [Vendor] # @hasInverse(field: tag)
+    verbo: [Verbo] # @hasInverse(field: tag)
     word: [Word] # @hasInverse(field: tag)
+    tranx: [Transaction] # @hasInverse(field: tag)
   }
 
   type Tool {
@@ -532,6 +649,30 @@ export const typeDefs = /* GraphQL */ `
     tag: [Tag] # @hasInverse(field: note)
   }
 
+  type Transaction {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    budget_id: Budget
+    budget: Budget
+    currency_id: String
+    currency: [Currency]
+    fin_acct: [FinancialAccount]
+    fin_acc_id: String
+    occurrence_string: String
+    tranx_event: String
+    tranx_credit: Int
+    tranx_debit: Int
+    description: String
+    vendor: [Vendor]
+    participant: [Person]
+    account: [Account]
+    media: [Media] # @hasInverse(field: note)
+    note: [Note] # @search(by: [term])
+    tag: [Tag] # @hasInverse(field: note)
+    # currency: [AllowedCurrency]
+  }
+
   type User {
     _id: String
     createdAt: String
@@ -549,6 +690,7 @@ export const typeDefs = /* GraphQL */ `
     games: [String]
     guesses: [String]
     posts: [String]
+    tranx: [Transaction]
   }
 
   type Vendor {
@@ -562,9 +704,22 @@ export const typeDefs = /* GraphQL */ `
     media: [Media] # @hasInverse(field: note)
     note: [String] # @search(by: [term])
     tag: [Tag] # @hasInverse(field: note)
+    tranx: [Transaction]
   }
 
-  
+  type Verbo {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    spanish: String
+    english: String
+    reflexive: Boolean
+    irregular: Boolean
+    categoria_de_irregular: String # may be changed to or moved from categoría_de_irregular
+    cambiar_de_irregular: String
+    terminacion: AllowedTerminacion # may be changed to or moved from terminación
+    grupo: Float
+  }
 
   type Word {
     _id: String
@@ -631,6 +786,18 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
+  type ReturnPalabraList {
+    word_list: ReturnWordList
+    word_cursor: String
+    word_count: Int
+    affix_list: ReturnAffixList
+    affix_cursor: String
+    affix_count: Int
+    verbo_list: ReturnVerboList
+    verbo_cursor: String
+    verbo_count: Int
+  }
+
   type ReturnPersonList {
     persons: [Person]
     count: Int
@@ -655,6 +822,12 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
+  type ReturnTransactionList {
+    tranx: [Transaction]
+    count: Int
+    cursor: String
+  }
+
   type ReturnWordList {
     words: [Word]
     count: Int
@@ -663,6 +836,12 @@ export const typeDefs = /* GraphQL */ `
 
   type ReturnAffixList {
     affixes: [Affix]
+    count: Int
+    cursor: String
+  }
+
+  type ReturnVerboList {
+    verbos: [Verbo]
     count: Int
     cursor: String
   }
@@ -698,6 +877,18 @@ export const typeDefs = /* GraphQL */ `
 
   type ReturnRandomAffixes {
     affixes: [Affix]
+    count: Int
+  }
+
+  type ReturnVerbos {
+    verbos: [Verbo]
+    count: Int
+    cursor: String
+    # list: [Verbo] to be used with the interface
+  }
+
+  type ReturnRandomVerbos {
+    verbos: [Verbo]
     count: Int
   }
 
@@ -826,6 +1017,14 @@ export const typeDefs = /* GraphQL */ `
     findToolByID(
       _id: String
     ): Tool
+    findTransactions(
+      filter: String
+      cursor: String
+      limit: Int = 20
+    ): ReturnTransactionList
+    findTransactionByID(
+      _id: String
+    ): Transaction
     findVendors(
       filter: String
       cursor: String
@@ -863,6 +1062,26 @@ export const typeDefs = /* GraphQL */ `
       filter: String
       limit: Int = 20
     ): ReturnRandomAffixes
+    findVerboByID(
+      _id: String
+    ): Verbo
+    findVerbos(
+      filter: String
+      english: String
+      irregular: Boolean = false
+      reflexive: Boolean = false
+      categoria_de_irregular: String
+      cambiar_de_irregular: String
+      terminacion: String
+      grupo: Int = 0
+      spanish: String
+      cursor: String
+      limit: Int = 20
+    ): ReturnVerbos
+    findRandomVerbos(
+      filter: String,
+      limit: Int = 20
+    ): ReturnRandomVerbos
     findUserByID(
       _id: String
       ): ReturnAuthUser
@@ -878,9 +1097,21 @@ export const typeDefs = /* GraphQL */ `
   }
 
   type Mutation {
+    createActivity(
+      input: InputActivity!
+    ): Activity!
+    updateActivityByID(
+      input: InputActivity!
+    ): Activity!
     deleteActivityByID(
       _id: String!
     ): DeletedObjectByID!
+    createBlogPost(
+      input: InputBlogPost!
+    ): BlogPost!
+    updateBlogPostByID(
+      input: InputBlogPost!
+    ): BlogPost!
     deleteBlogPostByID(
       _id: String!
     ): DeletedObjectByID!
@@ -982,6 +1213,19 @@ export const typeDefs = /* GraphQL */ `
     updateToolByID(
       input: InputTool!
     ): Tool!
+    createTransaction(
+      input: InputTransaction!
+    ): Transaction!
+    deleteTransactionByID(
+      _id: String
+      deleted: Boolean = false
+      deletedCount: Int = 0
+      justOne: Boolean = true
+      message: String = "WILL DELETE"
+    ): DeletedObjectByID!
+    updateTransactionByID(
+      input: InputTransaction!
+    ): Transaction!
     createWord(input: InputWord!): Word!
     updateWordByID(input: InputMutateWord!): Word!
     deleteWordByID(
@@ -1002,6 +1246,15 @@ export const typeDefs = /* GraphQL */ `
       justOne: Boolean = true
       message: String = "WILL DELETE"
     ): DeletedObjectByID
+    createVerbo(input: InputVerbo!): Verbo!
+    updateVerboByID(input: InputMutateVerbo!): Verbo!
+    deleteVerboByID(
+      _id: String
+      deleted: Boolean = false
+      deletedCount: Int = 0
+      justOne: Boolean = true
+      message: String = "WILL DELETE"
+      ): DeletedObjectByID!
     logIn(
       input: InputAuth!
     ): ReturnAuthUser!

@@ -1,7 +1,6 @@
 import useSWR from 'swr';
 import Layout from './../../components/layout';
 import Head from 'next/head';
-import { Array2String } from '../../lib/wordListFunctions';
 import { fetcher } from '../../lib/serverCall';
 
 const queryRandomVerbo = `
@@ -56,6 +55,14 @@ export default function RandomVerbo() {
           <p>grupo: {verbo0.grupo} | terminacion: {verbo0.terminacion}</p>
           <p>reflexive: {verbo0.reflexive} | irregular: {verbo0.irregular}</p>
           <p> cambiar_de_irregular: {verbo0.cambiar_de_irregular} | categoria_de_irregular: {verbo0.categoria_de_irregular}</p>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+        <div>Espanol: {verbo1.spanish} | English: {verbo1.english}
+          <p>grupo: {verbo1.grupo} | terminacion: {verbo1.terminacion}</p>
+          <p>reflexive: {verbo1.reflexive} | irregular: {verbo1.irregular}</p>
+          <p> cambiar_de_irregular: {verbo1.cambiar_de_irregular} | categoria_de_irregular: {verbo1.categoria_de_irregular}</p>
         </div>
       </article>
     </Layout>

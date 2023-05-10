@@ -241,7 +241,7 @@ export const typeDefs = /* GraphQL */ `
     irregular: Boolean
     categoria_de_irregular: String
     cambiar_de_irregular: String
-    terminacion: AllowedTerminacion
+    terminacion: String
     grupo: Float
   }
 
@@ -254,7 +254,7 @@ export const typeDefs = /* GraphQL */ `
     irregular: Boolean
     categoria_de_irregular: String
     cambiar_de_irregular: String
-    terminacion: AllowedTerminacion
+    terminacion: String
     grupo: Float
   }
 
@@ -718,7 +718,7 @@ export const typeDefs = /* GraphQL */ `
     irregular: Boolean
     categoria_de_irregular: String # may be changed to or moved from categoría_de_irregular
     cambiar_de_irregular: String
-    terminacion: AllowedTerminacion # may be changed to or moved from terminación
+    terminacion: String # may be changed to or moved from terminación
     grupo: Float
   }
 

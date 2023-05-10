@@ -48,14 +48,14 @@ export default function RandomWord() {
       </Head>
       <article>
         <div>Word: {word0.word}
-          <p>Definition: {word0.definition} | Meaning: {word0.meaning}</p>
+          <p>{word0.definition ? "Definition: " + word0.definition + " | " : null} {word0.meaning ? "Meaning: " + word0.meaning : null}</p>
           <p>Scrabble Points: {word0.s_points} | Words With Friends Points: {word0.f_points}</p>
         </div>
         <br/>
         <hr/>
         <br/>
         <div>Word: {word1.word}
-          <p>Definition: {word1.definition} | Meaning: {word1.meaning}</p>
+        {word1.definition ? "Definition: " + word1.definition + " | " : null} {word1.meaning ? "Meaning: " + word1.meaning : null}
           <p>Scrabble Points: {word1.s_points} | Words With Friends Points: {word1.f_points}</p>
         </div>
       </article>

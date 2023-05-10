@@ -38,6 +38,15 @@ export default function Layout({children, home}) {
             <h2>
               <Link href="/words/random-affix">Random Affix</Link>
             </h2>
+            <br/>
+            <h2>
+              <Link href="/words/random-verbo">Verbos Al Azar</Link>
+            </h2>
+            <br/>
+            <h2>
+              <Link href="/words/random-four-letter-word">Random 4 Letter Word</Link>
+            </h2>
+            <br/>
           </>
         ) : (
           <>
@@ -59,6 +68,15 @@ export default function Layout({children, home}) {
             <h2>
               <Link href="/words/random-affix">Random Affix</Link>
             </h2>
+            <br/>
+            <h2>
+              <Link href="/words/random-verbo">Verbos Al Azar</Link>
+            </h2>
+            <br/>
+            <h2>
+              <Link href="/words/random-four-letter-word">Random 4 Letter Word</Link>
+            </h2>
+            <br/>
           </>
         )}
       </header>

@@ -435,16 +435,66 @@ export const typeDefs = /* GraphQL */ `
 
   type Activity {
     _id: String
-    createdAt: String
-    updatedAt: String
     endTime: String # DateTime
     startTime: String # DateTime
     description: String
-    media: [Media]
+    media: [String]
     name: String
-    note: [Note]
-    person: [Person]
-    tag: [Tag]
+    note: [String]
+    person: [String]
+    tag: [String]
+    activity_type: String
+    date: DateTime
+    favorite: Boolean
+    title: String
+    distance: Float
+    calories: Float
+    time: String
+    avg_HR: Int
+    max_HR: Int
+    aerobic_TE: Float
+    avg_bike_cadence: Int
+    max_bike_cadence: Int
+    avg_speed: String
+    max_speed: String
+    total_ascent: Int
+    total_descent: Int
+    avg_stride_length: Flot
+    avg_vertical_ratio: Int
+    avg_vertical_oscillation: Flot
+    avg_ground_contact_time: Int
+    avg_GCT_balance: String
+    training_stress_score_registered_TM: Int
+    avg_power: Int
+    max_power: Int
+    grit: Int
+    flow: Int
+    total_strokes: String
+    avg: {
+      swof: Int
+    }
+    avg_stroke_rate: Int
+    total_reps: Int
+    total_sets: String
+    dive_time: String
+    min_temp: Float
+    surface_interval: String
+    cecompression: String
+    best_lap_time: String
+    number_of_laps: Int
+    max_temp: Float
+    avg_resp: Int
+    min_resp: Int
+    max_resp: Int
+    stress_change: String
+    stress_start: String
+    stress_end: String
+    avg_stress: String
+    max_stress: String
+    moving_time: String
+    elapsed_time: String
+    min_elevation: String
+    max_elevation: String
   }
 
   type Affix {

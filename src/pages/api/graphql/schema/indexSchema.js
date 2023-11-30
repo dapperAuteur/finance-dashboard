@@ -101,7 +101,7 @@ export const typeDefs = /* GraphQL */ `
     dive_time: String
     min_temp: Float
     surface_interval: String
-    cecompression: String
+    decompression: String
     best_lap_time: String
     number_of_laps: Int
     max_temp: Float
@@ -479,7 +479,7 @@ export const typeDefs = /* GraphQL */ `
     dive_time: String
     min_temp: Float
     surface_interval: String
-    cecompression: String
+    decompression: String
     best_lap_time: String
     number_of_laps: Int
     max_temp: Float

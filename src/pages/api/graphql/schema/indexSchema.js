@@ -620,6 +620,7 @@ export const typeDefs = /* GraphQL */ `
     updatedAt: String
     title: String
     description: String
+    duration: String
     publisher: String
     performers: [Person] # @hasInverse(field: media)
     media_link: String

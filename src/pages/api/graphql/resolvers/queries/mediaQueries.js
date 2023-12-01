@@ -182,6 +182,7 @@ export const MediaQueries = {
     },
     findMediaByID: async (_, args, context) => {
         let { _id } = { ...args };
+        console.log('_id :>> ', _id);
         try {
             const client = await clientPromise;
             const db = client.db(dbName);
@@ -190,6 +191,7 @@ export const MediaQueries = {
             .collection(dbCollection)
             .find({_id: media_ObjectID})
             .next();
+            console.log('media :>> ', media);
             return media;
         } catch (error) {
             console.log('error :>> ', error);

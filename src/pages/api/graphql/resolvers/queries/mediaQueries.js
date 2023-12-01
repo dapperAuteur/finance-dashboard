@@ -167,6 +167,11 @@ export const MediaQueries = {
                 cursor = media.pop();
                 cursor = cursor._id;
             }
+            if (!Array.isArray(media)) {
+                let mediaArray = [];
+                mediaArray.push(media);
+                media = mediaArray;
+            }
             val = {
                 media, count, cursor
             }
@@ -350,9 +355,15 @@ export const MediaQueries = {
                 picks: limit,
                 copy: true
             });
+            if (!Array.isArray(media)) {
+                let mediaArray = [];
+                mediaArray.push(media);
+                media = mediaArray;
+            }
             val = {
                 media, count, cursor
             };
+            console.log('val :>> ', val);
             return val;
         } catch(e) {
             console.error(e);

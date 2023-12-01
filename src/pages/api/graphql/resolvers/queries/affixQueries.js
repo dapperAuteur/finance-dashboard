@@ -105,6 +105,11 @@ export const AffixQueries = {
                 cursor = affixes.pop();
                 cursor = cursor._id;
             }
+            if (!Array.isArray(affixes)) {
+                let affixesArray = [];
+                affixesArray.push(affixes);
+                affixes = affixesArray;
+            }
             val = {
                 affixes, count, cursor
             };
@@ -174,6 +179,11 @@ export const AffixQueries = {
                 picks: limit,
                 copy: true
             });
+            if (!Array.isArray(affixes)) {
+                let affixesArray = [];
+                affixesArray.push(affixes);
+                affixes = affixesArray;
+            }
             val = {
                 affixes, count, cursor
             };

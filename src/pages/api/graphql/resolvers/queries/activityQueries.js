@@ -168,6 +168,11 @@ export const ActivityQueries = {
                 cursor = activities.pop();
                 cursor = cursor._id;
             }
+            if (!Array.isArray(activities)) {
+                let activitiesArray = [];
+                activitiesArray.push(activities);
+                activities = activitiesArray;
+            }
             val = {
                 activities, count, cursor
             }
@@ -236,6 +241,11 @@ export const ActivityQueries = {
                 picks: limit,
                 copy: true
             });
+            if (!Array.isArray(activities)) {
+                let activitiesArray = [];
+                activitiesArray.push(activities);
+                activities = activitiesArray;
+            }
             val = {
                 activities, count, cursor
             };

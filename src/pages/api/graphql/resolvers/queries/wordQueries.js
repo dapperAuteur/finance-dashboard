@@ -101,6 +101,11 @@ export const WordQueries = {
                 cursor = words.pop();
                 cursor = cursor._id;
             }
+            if (!Array.isArray(words)) {
+                let wordsArray = [];
+                wordsArray.push(words);
+                words = wordsArray;
+            }
             val = {
                 words, count, cursor
             }
@@ -169,6 +174,11 @@ export const WordQueries = {
                 picks: limit,
                 copy: true
             });
+            if (!Array.isArray(words)) {
+                let wordsArray = [];
+                wordsArray.push(words);
+                words = wordsArray;
+            }
             val = {
                 words, count, cursor
             };

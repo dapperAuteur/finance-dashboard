@@ -168,6 +168,11 @@ export const VerboQueries = {
                 cursor = verbos.pop();
                 cursor = cursor._id;
             }
+            if (!Array.isArray(verbos)) {
+                let verbosArray = [];
+                verbosArray.push(verbos);
+                verbos = verbosArray;
+            }
             val = {
                 verbos, count, cursor
             }
@@ -236,6 +241,11 @@ export const VerboQueries = {
                 picks: limit,
                 copy: true
             });
+            if (!Array.isArray(verbos)) {
+                let verbosArray = [];
+                verbosArray.push(verbos);
+                verbos = verbosArray;
+            }
             val = {
                 verbos, count, cursor
             };

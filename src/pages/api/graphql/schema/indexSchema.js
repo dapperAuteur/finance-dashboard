@@ -643,7 +643,7 @@ export const typeDefs = /* GraphQL */ `
     vendor: [Vendor] # @hasInverse(field: media)
     verbo: [Verbo] # @hasInverse(field: media)
     word: [Word] # @hasInverse(field: media)
-    tag: [Tag] # @hasInverse(field: media)
+    tag: [String] # need to refactor to use Tag object @hasInverse(field: media)
     tranx: [Transaction] # @hasInverse(field: media)
   }
 

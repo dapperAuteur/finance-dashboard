@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "./../../../../../lib/mongodb";
 import shuffle from 'shuffle-array';
 
@@ -113,10 +114,11 @@ export const WordQueries = {
         try {
             const client = await clientPromise;
             const db = client.db(dbName);
+            const word_ObjectID = new ObjectId(_id);
             let word = await db
             .collection(dbCollection)
-            .find({_id})
-            .toArray();
+            .find({_id: word_ObjectID})
+            .next();
             return word;
         } catch (error) {
             console.log('error :>> ', error);

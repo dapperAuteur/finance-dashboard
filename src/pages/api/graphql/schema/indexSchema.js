@@ -60,11 +60,66 @@ export const typeDefs = /* GraphQL */ `
     endTime: String # DateTime
     startTime: String # DateTime
     description: String
-    media: [String]
+    media: InputMedia
     name: String
     note: [String]
     person: [String]
     tag: [String]
+    activity_type: String
+    date: String # DateTime
+    favorite: Boolean
+    title: String
+    distance: Float
+    calories: Float
+    time: String
+    avg_HR: Int
+    max_HR: Int
+    aerobic_TE: Float
+    avg_bike_cadence: Int # Did fix work
+    max_bike_cadence: Int # Did fix work
+    avg_speed: String
+    max_speed: String
+    total_ascent: Int
+    total_descent: Int
+    avg_stride_length: Float
+    avg_vertical_ratio: Int
+    avg_vertical_oscillation: Float
+    avg_ground_contact_time: Int
+    avg_GCT_balance: String
+    training_stress_score_registered_TM: Int
+    avg_power: Int
+    max_power: Int
+    grit: Int
+    flow: Int
+    total_strokes: String
+    avg: InputSwof
+    avg_stroke_rate: Int
+    total_reps: Int
+    total_sets: String
+    dive_time: String
+    min_temp: Float
+    surface_interval: String
+    decompression: String
+    best_lap_time: String
+    number_of_laps: Int
+    max_temp: Float
+    avg_resp: Int # Did fix work
+    min_resp: Int # Did fix work
+    max_resp: Int # Did fix work
+    stress_change: String
+    stress_start: String
+    stress_end: String
+    avg_stress: String
+    max_stress: String
+    moving_time: String
+    elapsed_time: String
+    min_elevation: String
+    max_elevation: String
+  }
+
+  input InputSwof {
+    _id: String
+    avg: Int
   }
 
   input InputBlogPost {
@@ -74,7 +129,7 @@ export const typeDefs = /* GraphQL */ `
     author: [String]
     body: String
     comment: [String]
-    media: [String]
+    media: [InputMedia]
     note: [String]
     publish_date: String # DateTime
     published: Boolean
@@ -92,7 +147,7 @@ export const typeDefs = /* GraphQL */ `
     budget_balance: Float
     budget_manager: String
     tags: [String]
-    media: [String]
+    media: [InputMedia]
     note: [String]
     partner: [String]
     tranx: [String]
@@ -106,7 +161,7 @@ export const typeDefs = /* GraphQL */ `
     blog_post: [String] # @hasInverse(field: comment)
     body: String # @search(by: [fulltext])
     comment: [String] # @hasInverse(field: comment)
-    media: [String] # @hasInverse(field: comment)
+    media: InputMedia # @hasInverse(field: comment)
     note: [String] # @hasInverse(field: comment)
     publish_date: String # DateTime @search
     published: Boolean
@@ -129,7 +184,7 @@ export const typeDefs = /* GraphQL */ `
     current_value: Float
     fin_inst: String
     manager: String
-    media: [String]
+    media: InputMedia
     note: [String]
     owner: [String]
     tag: [String]
@@ -160,7 +215,7 @@ export const typeDefs = /* GraphQL */ `
     publisher: String
     # performers: [Person] # @hasInverse(field: media)
     media_link: String
-    media_type: String
+    media_type: MediaType # was String
     # activity: [Activity] # @hasInverse(field: media)
     # affix: [Affix] # @hasInverse(field: media)
     # blog_post: [BlogPost] # @hasInverse(field: media)
@@ -196,7 +251,7 @@ export const typeDefs = /* GraphQL */ `
     game: [String] # @hasInverse(field: player)
     guess: [String]
     is_user: Boolean
-    media: [String] # @hasInverse(field: person)
+    media: InputMedia # @hasInverse(field: person)
     nickname: [String] # @search(by: [hash])
     note: [String] # @hasInverse(field: person)
     profile_image_url: [String]
@@ -214,7 +269,7 @@ export const typeDefs = /* GraphQL */ `
     author: [String]
     subscribers: Int
     tag: [String]
-    media: [String]
+    media: InputMedia
     note: [String]
     published: Boolean
   }
@@ -227,7 +282,7 @@ export const typeDefs = /* GraphQL */ `
     vendor_name: String
     black_owned: Boolean
     description: String
-    media: [String]
+    media: InputMedia
     note: [String]
     tag: [String]
     tranx: [String]
@@ -275,7 +330,7 @@ export const typeDefs = /* GraphQL */ `
     usage: Int
     end_of_life: String
     usage_max: Int
-    media: [String]
+    media: InputMedia
     note: [String]
     tag: [String]
   }
@@ -294,7 +349,7 @@ export const typeDefs = /* GraphQL */ `
     vendor: [String]
     participant: [String]
     account: [String]
-    media: [String] # @hasInverse(field: note)
+    media: InputMedia # @hasInverse(field: note)
     note: [String] # @search(by: [term])
     tag: [String] # @hasInverse(field: note)
     # currency: [String]
@@ -332,7 +387,7 @@ export const typeDefs = /* GraphQL */ `
     tongue: String
     example: [String]
     affix_type: [AllowedAffixes]
-    media: [String]
+    media: InputMedia
     note: [String]
   }
 
@@ -344,7 +399,7 @@ export const typeDefs = /* GraphQL */ `
     tongue: String
     example: [String]
     affix_type: [AllowedAffixes]
-    media: [String]
+    media: InputMedia
     note: [String]
     nModified: Int
   }
@@ -383,16 +438,63 @@ export const typeDefs = /* GraphQL */ `
 
   type Activity {
     _id: String
-    createdAt: String
-    updatedAt: String
     endTime: String # DateTime
     startTime: String # DateTime
     description: String
     media: [Media]
     name: String
-    note: [Note]
-    person: [Person]
-    tag: [Tag]
+    note: [String]
+    person: [String]
+    tag: [String]
+    activity_type: String
+    date: String # DateTime
+    favorite: Boolean
+    title: String
+    distance: Float
+    calories: Float
+    time: String
+    avg_HR: Int
+    max_HR: Int
+    aerobic_TE: Float
+    avg_bike_cadence: Int # Did fix work
+    max_bike_cadence: Int # Did fix work
+    avg_speed: String
+    max_speed: String
+    total_ascent: Int
+    total_descent: Int
+    avg_stride_length: Float
+    avg_vertical_ratio: Int
+    avg_vertical_oscillation: Float
+    avg_ground_contact_time: Int
+    avg_GCT_balance: String
+    training_stress_score_registered_TM: Int
+    avg_power: Int
+    max_power: Int
+    grit: Int
+    flow: Int
+    total_strokes: String
+    avg_stroke_rate: Int
+    total_reps: Int
+    total_sets: String
+    dive_time: String
+    min_temp: Float
+    surface_interval: String
+    decompression: String
+    best_lap_time: String
+    number_of_laps: Int
+    max_temp: Float
+    avg_resp: Int # Did fix work
+    min_resp: Int # Did fix work
+    max_resp: Int # Did fix work
+    stress_change: String
+    stress_start: String
+    stress_end: String
+    avg_stress: String
+    max_stress: String
+    moving_time: String
+    elapsed_time: String
+    min_elevation: String
+    max_elevation: String
   }
 
   type Affix {
@@ -404,7 +506,7 @@ export const typeDefs = /* GraphQL */ `
     tongue: String
     example: [String]
     affix_type: [String] # AllowedAffixes should be an array of enums [AllowedAffixes]
-    media: [String]
+    media: [Media]
     note: [String]
   }
 
@@ -602,6 +704,11 @@ export const typeDefs = /* GraphQL */ `
     media: [Media]
     note: [Note]
     published: Boolean
+  }
+
+  type Swof {
+    _id: String
+    avg: Int
   }
 
   type Tag {
@@ -859,6 +966,11 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
+  type ReturnRandomActivities {
+    activities: [Activity]
+    count: Int
+  }
+  
   type ReturnRandomWords {
     words: [Word]
     count: Int
@@ -938,6 +1050,10 @@ export const typeDefs = /* GraphQL */ `
     findActivityByID(
       _id: String
       ): Activity
+    findRandomActivities(
+      filter: String
+      limit: Int = 20
+    ): ReturnRandomActivities
     findBlogPosts(
       filter: String
       cursor: String
@@ -994,6 +1110,11 @@ export const typeDefs = /* GraphQL */ `
     findMediaByID(
       _id: String
     ): Media
+    findRandomMedia(
+      filter: String
+      cursorMedia: String
+      limit: Int = 20
+    ): ReturnMediaList
     findPersons(
       filter: String
       cursor: String

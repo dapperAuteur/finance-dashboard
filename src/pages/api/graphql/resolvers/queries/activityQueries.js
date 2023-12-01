@@ -1,28 +1,28 @@
 import { ObjectId } from "mongodb";
-import clientPromise from "./../../../../../lib/mongodb";
+import clientPromise from "../../../../../lib/mongodb";
 import shuffle from 'shuffle-array';
 
-const dbCollection = "verbos";
+const dbCollection = "activities";
 const dbName = "palabras-express-api";
 
-export const VerboQueries = {
-    findVerbos: async (_, args, context) => {
+export const ActivityQueries = {
+    findActivities: async (_, args, context) => {
         console.log('args :>> ', args);
-        let {cursor, english, filter, limit, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo, spanish} = {...args};
+        let {cursor, favorite, filter, limit, description, activity_type, time, avg_speed, max_speed, avg_GCT_balance, title} = {...args};
         let val = {};
-        let verbos, count;
+        let activities, count;
         try {
             const client = await clientPromise;
             const db = client.db(dbName);
             if (filter) {
-                verbos = await db
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                spanish: {$regex: `${filter}`, $options: "i"}
+                                title: {$regex: `${filter}`, $options: "i"}
                             },{
-                                english: {$regex: `{filter}`, $options: "i"}
+                                favorite: {$regex: `{filter}`, $options: "i"}
                             }
                         ]
                     })
@@ -31,13 +31,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(spanish){
-                verbos = await db
+            } else if(title){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                spanish: {$regex: `${spanish}`, $options: "i"}
+                                title: {$regex: `${title}`, $options: "i"}
                             }
                         ]
                     })
@@ -46,13 +46,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(english){
-                verbos = await db
+            } else if(favorite){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                english: {$regex: `${english}`, $options: "i"}
+                                favorite: {$regex: `${favorite}`, $options: "i"}
                             }
                         ]
                     })
@@ -61,13 +61,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(reflexive){
-                verbos = await db
+            } else if(description){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                reflexive: {$regex: `${reflexive}`, $options: "i"}
+                                description: {$regex: `${description}`, $options: "i"}
                             }
                         ]
                     })
@@ -76,13 +76,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(irregular){
-                verbos = await db
+            } else if(activity_type){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                irregular: {$regex: `${irregular}`, $options: "i"}
+                                activity_type: {$regex: `${activity_type}`, $options: "i"}
                             }
                         ]
                     })
@@ -91,13 +91,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(categoría_de_irregular){
-                verbos = await db
+            } else if(time){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                categoría_de_irregular: {$regex: `${categoría_de_irregular}`, $options: "i"}
+                                time: {$regex: `${time}`, $options: "i"}
                             }
                         ]
                     })
@@ -106,13 +106,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(cambiar_de_irregular){
-                verbos = await db
+            } else if(avg_speed){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                cambiar_de_irregular: {$regex: `${cambiar_de_irregular}`, $options: "i"}
+                                avg_speed: {$regex: `${avg_speed}`, $options: "i"}
                             }
                         ]
                     })
@@ -121,13 +121,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(terminación){
-                verbos = await db
+            } else if(max_speed){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                terminación: {$regex: `${terminación}`, $options: "i"}
+                                max_speed: {$regex: `${max_speed}`, $options: "i"}
                             }
                         ]
                     })
@@ -136,13 +136,13 @@ export const VerboQueries = {
                     count = await db
                         .collection(dbCollection)
                         .countDocuments();
-            } else if(grupo){
-                verbos = await db
+            } else if(avg_GCT_balance){
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                grupo: {$regex: `${grupo}`, $options: "i"}
+                                avg_GCT_balance: {$regex: `${avg_GCT_balance}`, $options: "i"}
                             }
                         ]
                     })
@@ -152,7 +152,7 @@ export const VerboQueries = {
                         .collection(dbCollection)
                         .countDocuments();
             } else {
-                verbos = await db
+                activities = await db
                     .collection(dbCollection)
                     .find({})
                     .limit(limit)
@@ -162,53 +162,53 @@ export const VerboQueries = {
                     .collection(dbCollection)
                     .countDocuments();
             }
-            if (verbos.length < limit) {
+            if (activities.length < limit) {
                 cursor = "end";
             } else {
-                cursor = verbos.pop();
+                cursor = activities.pop();
                 cursor = cursor._id;
             }
             val = {
-                verbos, count, cursor
+                activities, count, cursor
             }
             return val;
         } catch(e) {
             console.error(e);
         }
     },
-    findVerboByID: async (_, args, context) => {
+    findActivityByID: async (_, args, context) => {
         let { _id } = { ...args };
         try {
             const client = await clientPromise;
+            const activity_ObjectID = new ObjectId(_id);
             const db = client.db(dbName);
-            const verbo_ObjectID = new ObjectId(_id);
-            let verbo = await db
+            let activity = await db
             .collection(dbCollection)
-            .find({_id: verbo_ObjectID})
+            .find({_id: activity_ObjectID})
             .next();
-            return verbo;
+            return activity;
         } catch (error) {
             console.log('error :>> ', error);
         }
     },
-    findRandomVerbos: async (_, args, context) => {
-        let {cursor, definition, filter, limit, meaning, verbo} = {...args};
+    findRandomActivities: async (_, args, context) => {
+        let {cursor, definition, filter, limit, meaning, activity} = {...args};
         let val = {};
-        let verbos, count;
+        let activities, count;
         try {
             const client = await clientPromise;
             const db = client.db(dbName);
             if (filter) {
-                verbos = await db
+                activities = await db
                     .collection(dbCollection)
                     .find({
                         $or: [
                             {
-                                spanish: {$regex: `${filter}`, $options: "i"}
+                                title: {$regex: `${filter}`, $options: "i"}
                             },{
-                                english: {$regex: `{filter}`, $options: "i"}
+                                favorite: {$regex: `{filter}`, $options: "i"}
                             },{
-                                terminación: {$regex: `${filter}`, $options: "i"}
+                                max_speed: {$regex: `${filter}`, $options: "i"}
                             }
                         ]
                     })
@@ -217,7 +217,7 @@ export const VerboQueries = {
                     .collection(dbCollection)
                     .countDocuments();
             } else {
-                verbos = await db
+                activities = await db
                     .collection(dbCollection)
                     .find({})
                     .toArray();
@@ -226,18 +226,18 @@ export const VerboQueries = {
                     .collection(dbCollection)
                     .countDocuments();
             }
-            if (verbos.length < limit) {
+            if (activities.length < limit) {
                 cursor = "end";
             } else {
-                cursor = verbos.pop();
+                cursor = activities.pop();
                 cursor = cursor._id;
             }
-            verbos = shuffle.pick(verbos, {
+            activities = shuffle.pick(activities, {
                 picks: limit,
                 copy: true
             });
             val = {
-                verbos, count, cursor
+                activities, count, cursor
             };
             return val;
         } catch(e) {

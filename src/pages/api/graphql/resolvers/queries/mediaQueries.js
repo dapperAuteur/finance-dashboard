@@ -185,12 +185,11 @@ export const MediaQueries = {
         try {
             const client = await clientPromise;
             const db = client.db(dbName);
-            console.log('_id :>> ', _id);
             const media_ObjectID = new ObjectId(_id);
             let media = await db
             .collection(dbCollection)
             .find({_id: media_ObjectID})
-            .next();            
+            .next();
             return media;
         } catch (error) {
             console.log('error :>> ', error);
@@ -350,12 +349,10 @@ export const MediaQueries = {
                   .collection(dbCollection)
                   .countDocuments();
           }
-          console.log('media :>> ', media);
             media = shuffle.pick(media, {
                 picks: limit,
                 copy: true
             });
-            console.log('media :>> ', media);
             if (!Array.isArray(media)) {
                 let mediaArray = [];
                 mediaArray.push(media);

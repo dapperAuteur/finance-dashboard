@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "./../../../../../lib/mongodb";
 import shuffle from 'shuffle-array';
 
@@ -116,12 +117,12 @@ export const AffixQueries = {
         let { _id } = { ...args };
         try {
             const client = await clientPromise;
+            const affix_ObjectID = new ObjectId(_id);
             const db = client.db(dbName);
             let affix = await db
             .collection(dbCollection)
-            .find({_id})
-            .toArray();
-            console.log('affix :>> ', affix);
+            .find({_id: affix_ObjectID})
+            .next();
             return affix;
         } catch (error) {
             console.log('error :>> ', error);

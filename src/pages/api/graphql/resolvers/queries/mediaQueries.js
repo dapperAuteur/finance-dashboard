@@ -181,11 +181,11 @@ export const MediaQueries = {
             const client = await clientPromise;
             const db = client.db(dbName);
             console.log('_id :>> ', _id);
-            let media_ObjectID = new ObjectId(_id);
+            const media_ObjectID = new ObjectId(_id);
             let media = await db
             .collection(dbCollection)
             .find({_id: media_ObjectID})
-            .next()            
+            .next();            
             return media;
         } catch (error) {
             console.log('error :>> ', error);

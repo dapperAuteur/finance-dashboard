@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "../../../../../lib/mongodb";
 import shuffle from 'shuffle-array';
 
@@ -179,11 +180,12 @@ export const ActivityQueries = {
         let { _id } = { ...args };
         try {
             const client = await clientPromise;
+            const activity_ObjectID = new ObjectId(_id);
             const db = client.db(dbName);
             let activity = await db
             .collection(dbCollection)
-            .find({_id})
-            .toArray();
+            .find({_id: activity_ObjectID})
+            .next();
             return activity;
         } catch (error) {
             console.log('error :>> ', error);

@@ -622,6 +622,7 @@ export const typeDefs = /* GraphQL */ `
     publisher: String
     performers: [Person] # @hasInverse(field: media)
     media_link: String
+    thumbnail_url: String
     media_type: String
     activity: [Activity] # @hasInverse(field: media)
     affix: [Affix] # @hasInverse(field: media)

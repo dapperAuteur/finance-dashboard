@@ -1,13 +1,12 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "../../../../../lib/mongodb";
 import shuffle from 'shuffle-array';
 
 const dbCollection = "media";
 const dbName = "palabras-express-api";
 
-// console.log('mediaQueries');
 export const MediaQueries = {
     findMedia: async (_, args, context) => {
-        // console.log('args :>> ', args);
         let {cursor, publisher, filter, limit, comment, tag, person, note, user, media_type, title} = {...args};
         let val = {};
         let media, count;
@@ -171,7 +170,6 @@ export const MediaQueries = {
             val = {
                 media, count, cursor
             }
-            console.log('val :>> ', val);
             return val;
         } catch(e) {
             console.error(e);
@@ -183,11 +181,11 @@ export const MediaQueries = {
             const client = await clientPromise;
             const db = client.db(dbName);
             console.log('_id :>> ', _id);
+            let media_ObjectID = new ObjectId(_id);
             let media = await db
             .collection(dbCollection)
-            .find({_id})
-            .toArray();
-            console.log('media :>> ', media);
+            .find({_id: media_ObjectID})
+            .next()            
             return media;
         } catch (error) {
             console.log('error :>> ', error);

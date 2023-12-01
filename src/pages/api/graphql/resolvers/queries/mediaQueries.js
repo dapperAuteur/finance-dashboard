@@ -344,17 +344,18 @@ export const MediaQueries = {
               media = await db
                   .collection(dbCollection)
                   .find({})
-                  .limit(limit)
                   .toArray();
               
               count = await db
                   .collection(dbCollection)
                   .countDocuments();
           }
+          console.log('media :>> ', media);
             media = shuffle.pick(media, {
                 picks: limit,
                 copy: true
             });
+            console.log('media :>> ', media);
             if (!Array.isArray(media)) {
                 let mediaArray = [];
                 mediaArray.push(media);
@@ -363,7 +364,6 @@ export const MediaQueries = {
             val = {
                 media, count, cursor
             };
-            console.log('val :>> ', val);
             return val;
         } catch(e) {
             console.error(e);

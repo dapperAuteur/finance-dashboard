@@ -620,6 +620,7 @@ export const typeDefs = /* GraphQL */ `
     updatedAt: String
     title: String
     description: String
+    externalMediaFile: String
     duration: String
     genre: String
     publisher: String

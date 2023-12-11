@@ -39,6 +39,6 @@ let financialAccountSchema = new Schema({
   timestamps: true
 });
 
-let FinancialAccount = mongoose.model('FinancialAccount', financialAccountSchema);
+let FinancialAccount = mongoose.model('FinancialAccount', financialAccountSchema || mongoose.model.FinancialAccount);
 
 export default FinancialAccount;

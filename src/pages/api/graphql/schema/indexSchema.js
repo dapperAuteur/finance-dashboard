@@ -182,6 +182,7 @@ export const typeDefs = /* GraphQL */ `
     token: String
     account_name: String!
     current_value: Float
+    account_type: String
     fin_inst: String
     manager: String
     media: InputMedia
@@ -581,6 +582,7 @@ export const typeDefs = /* GraphQL */ `
     updatedAt: String
     account_name: String! # @search(by: [hash])
     current_value: Float # @search
+    account_type: String
     fin_inst: String
     manager: String
     media: [Media] # @hasInverse(field: fin_acct)

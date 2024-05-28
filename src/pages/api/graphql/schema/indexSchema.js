@@ -743,6 +743,24 @@ export const typeDefs = /* GraphQL */ `
     tranx: [Transaction] # @hasInverse(field: tag)
   }
 
+  type Task {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    task_name: String
+    budget_id: Budget
+    budget: Budget
+    currency_id: String
+    currency: [Currency]
+    description: String
+    fin_acct: [FinancialAccount]
+    fin_acc_id: String
+    media: [Media] # @hasInverse(field: note)
+    note: [String] # @search(by: [term])
+    tag: [Tag] # @hasInverse(field: note)
+    occurrence_string: String
+  }
+
   type Tool {
     _id: String
     createdAt: String
@@ -752,6 +770,7 @@ export const typeDefs = /* GraphQL */ `
     tool_name: String
     tool_type: String
     tool_cost: Int
+    description: String
     life_span: Int
     date_acquired: String
     usage_start_date: String

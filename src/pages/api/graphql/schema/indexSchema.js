@@ -592,6 +592,17 @@ export const typeDefs = /* GraphQL */ `
     tranx: [Transaction] # @hasInverse(field: fin_acct)
   }
 
+  type Frase {
+    _id: String
+    createdAt: String
+    updatedAt: String
+    spanish: String
+    english: String
+    lesson: Int
+    known: Boolean
+    practiced: Int
+  }
+
   type Game {
     _id: String
     createdAt: String
@@ -908,6 +919,12 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
+  type ReturnFraseList {
+    frases: [Frase]
+    count: Int
+    cursor: String
+  }
+
   type ReturnGameList {
     games: [Game]
     count: Int
@@ -1120,6 +1137,18 @@ export const typeDefs = /* GraphQL */ `
     findFinancialAccountByID(
       _id: String
       ): FinancialAccount
+    findFraseByID(
+      _id: String
+    ): Frase
+    findFrases(
+      filter: String
+      cursor: String
+      limit: Int = 20
+    ): ReturnFraseList
+    findRandomFrases(
+      filter: String
+      limit: Int = 20
+    ): ReturnFraseList
     findGames(
       filter: String
       cursor: String

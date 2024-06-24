@@ -997,11 +997,39 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
+  type ReturnUser { 
+  user: User
+  }
+
   type ReturnUserList {
     users: [User]
     count: Int
     cursor: String
   }
+  
+  type ReturnUsers { 
+  users: [User]
+  count: Int
+  cursor: String
+}
+
+type ReturnAuthUser {
+  _id: String
+  email: String
+  username: String
+  userRole: [String]
+  role: Int
+  roles: [String]
+  profile_image_url: String
+  token: String
+  message: String
+  status: Int
+}
+
+type ReturnRandomUsers {
+    users: [User]
+    count: Int
+}
 
   type ReturnWords {
     words: [Word]
@@ -1025,12 +1053,6 @@ export const typeDefs = /* GraphQL */ `
     cursor: String
   }
 
-  type ReturnUsers {
-    users: [User]
-    count: Int
-    cursor: String
-  }
-
   type ReturnRandomAffixes {
     affixes: [Affix]
     count: Int
@@ -1046,24 +1068,6 @@ export const typeDefs = /* GraphQL */ `
   type ReturnRandomVerbos {
     verbos: [Verbo]
     count: Int
-  }
-
-  type ReturnRandomUsers {
-    users: [User]
-    count: Int
-  }
-
-  type ReturnAuthUser {
-    _id: String
-    email: String
-    username: String
-    userRole: [String]
-    role: Int
-    roles: [String]
-    profile_image_url: String
-    token: String
-    message: String
-    status: Int
   }
 
   type DeletedError {
@@ -1262,6 +1266,9 @@ export const typeDefs = /* GraphQL */ `
     findUserByID(
       _id: String
       ): ReturnAuthUser
+    findUserByEmail(
+      email: String
+      ): ReturnUser
     findUsers(
       filter: String
       cursorUser: String
